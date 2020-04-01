@@ -2,10 +2,16 @@ let daysArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
 let monthsArr = ["January", "February", "March", "April", "May", "June", "July", "August",
                 "September", "October", "November", "December"];
 
+init();
+
 function formatDate(date){
     let dateString = "" +date;
     if(date % 10 === 1) {
         dateString += "st";
+    } else if (date ===13) {
+        dateString += "th";
+    } else if (date % 10 === 3) {
+        dateString += "rd";
     } else if( date === 12) {
         dateString += "th";
     } else if(date % 10 === 2) {
@@ -19,8 +25,11 @@ function formatDate(date){
 function getDate() {
     let curDate = new Date();
     let printString = `${daysArr[curDate.getDay()]}, ${monthsArr[curDate.getMonth()]}\
-${formatDate(curDate.getDate())}`;
+ ${formatDate(curDate.getDate())}`;
     return printString;
 }
 
-getDate();
+function init() {
+    $("#currentDay").text(getDate());
+}
+
