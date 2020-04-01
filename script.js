@@ -1,5 +1,5 @@
 let curDate = new Date();
-
+let schedule = {};
 init();
 
 function formatDate(date){
@@ -34,5 +34,24 @@ function getDate() {
 
 function init() {
     $("#currentDay").text(getDate());
+    if(localStorage.getItem("schedule")) {
+        schedule = JSON.parse(localStorage.getItem("schedule"));
+        // Need to loop through the html and update the text
+    }
+
+    
 }
 
+
+function saveToLocal(){
+    localStorage.setItem("schedule", JSON.stringify(schedule));
+}
+function saveInfo() {
+    let textAreaValue = $(this).siblings("textarea").val();
+    let timeSlot = $(this).siblings("p").attr("value");
+
+    schedule[timeSlot] = textAreaValue;
+    saveToLocal();
+}
+
+$(".saveBtn").on("click", saveInfo);
