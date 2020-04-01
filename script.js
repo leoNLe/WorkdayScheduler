@@ -1,6 +1,4 @@
-let daysArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-let monthsArr = ["January", "February", "March", "April", "May", "June", "July", "August",
-                "September", "October", "November", "December"];
+let curDate = new Date();
 
 init();
 
@@ -23,7 +21,12 @@ function formatDate(date){
 }
 
 function getDate() {
-    let curDate = new Date();
+
+    let daysArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let monthsArr = ["January", "February", "March", "April", "May", "June", "July", "August",
+                "September", "October", "November", "December"];
+
+
     let printString = `${daysArr[curDate.getDay()]}, ${monthsArr[curDate.getMonth()]}\
  ${formatDate(curDate.getDate())}`;
     return printString;
