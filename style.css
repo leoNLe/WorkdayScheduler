@@ -28,6 +28,7 @@ textarea {
 
 .description {
     white-space: pre-wrap;
+    flex-basis: 80%;
 }
 
 .time-block {
@@ -35,7 +36,9 @@ textarea {
     border-radius: 15px; */
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    margin-bottom: 2px;
+    
+    height: 5rem;
 }
 
 .row {
@@ -50,6 +53,8 @@ textarea {
     color: #000000;
     border-top: 1px dashed #000000;
     padding: 10px;
+    flex-basis: 10%;
+    text-align: right;
 }
 
 .past {
@@ -74,10 +79,12 @@ textarea {
     background-color: #06AED5;
     color: white;
 
-    padding: 15px;
+   flex-basis: 10%; 
 }
-
-.saveBtn i:hover {
+.saveBtn{
     font-size: 20px;
+}
+.saveBtn:hover {
+    font-size: 50px;
     transition: all .3s ease-in-out;
 }

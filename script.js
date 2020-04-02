@@ -26,9 +26,9 @@ function getDate() {
     let monthsArr = ["January", "February", "March", "April", "May", "June", "July", "August",
                 "September", "October", "November", "December"];
 
-
     let printString = `${daysArr[curDate.getDay()]}, ${monthsArr[curDate.getMonth()]}\
  ${formatDate(curDate.getDate())}`;
+    
     return printString;
 }
 
@@ -37,16 +37,34 @@ function init() {
     //Check if there is already schedule in localStorage
     if(localStorage.getItem("schedule")) {
         schedule = JSON.parse(localStorage.getItem("schedule"));
-        //Grab all textarea in time-block and iterating through the entire array of textArea;
-        $.each( $(".time-block > textarea"),  ( index , element) => {
-            let timeSlot = $(element).attr("time");
-            if(schedule[timeSlot]){
-                $(element).text(schedule[timeSlot]);    
-            }
-        })
     } else {
         schedule = {};
     }
+    
+    curHour = curDate.getHours();
+    //Grab all textarea and iterating through the entire array and update textarea value and color;
+    $.each( $(".time-block > textarea"),  ( index , textArea) => {
+       
+        //Grab the textarea inside the div.time-block
+        let timeSlot = parseInt($(textArea).attr("time"));
+        //Update info for timeSlot if there is value in schedule
+        if(schedule[timeSlot])
+            $(textArea).text(schedule[timeSlot]);
+
+        //  Update class(.past .present .future) 
+        if(timeSlot === curHour) {
+            replaceClass(textArea, "past future", "present");
+        } else if(timeSlot < curHour) {
+            replaceClass(textArea, "present future", "past");
+        } else {
+            replaceClass(textArea, "past present", "future");
+        } 
+    })
+}
+
+function replaceClass(element, toRemove, toAdd) {
+    $(element).removeClass(toRemove);
+    $(element).addClass(toAdd);
 }
 
 function saveToLocal(){
