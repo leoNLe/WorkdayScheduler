@@ -2,6 +2,7 @@ let curDate = new Date();
 let schedule;
 init();
 
+//Format date with st, nd, rd, or th.
 function formatDate(date){
     let dateString = "" +date;
     if(date % 10 === 1) {
@@ -62,15 +63,13 @@ function init() {
     })
 }
 
-function replaceClass(element, toRemove, toAdd) {
-    $(element).removeClass(toRemove);
-    $(element).addClass(toAdd);
+//Replace class/s from element with other classes.
+function replaceClass(element, classToRemove, classToAdd) {
+    $(element).removeClass(classToRemove);
+    $(element).addClass(classToAdd);
 }
 
-function saveToLocal(){
-    localStorage.setItem("schedule", JSON.stringify(schedule));
-}
-
+//Save notice from textarea to localStorage.
 function saveInfo() {
 
     let textarea = $(this).siblings("textarea");
@@ -83,7 +82,7 @@ function saveInfo() {
     } else if (textAreaValue !== ""){
         schedule[timeSlot] = textAreaValue;
     }
-    saveToLocal();
+    localStorage.setItem("schedule", JSON.stringify(schedule));
 }
 
 $(".saveBtn").on("click", saveInfo);

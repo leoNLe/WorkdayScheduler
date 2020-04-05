@@ -54,7 +54,7 @@ textarea {
     border-top: 1px dashed #000000;
     padding: 10px;
     flex-basis: 10%;
-    text-align: right;
+    text-align: center;
 }
 
 .past {
